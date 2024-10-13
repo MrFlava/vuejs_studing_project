@@ -19,11 +19,15 @@ defineProps({
       <button v-on:click="age++">Add stuff</button>
       <button v-on:click="age--">Remove stuff</button>
       <div @click="changeTitle('interesting')">Change message</div>
-<!--   Change events   -->
+      <!--   Change events   -->
       <div class="box" @mouseover="handleEvent($event, 5)">mouseover (enter)</div>
       <div class="box" @mouseover="handleEvent">mouseleave</div>
       <div class="box" @dblclick="handleEvent">double click</div>
       <div class="box" @mousemove="handleMouseMove">position - {{x}} {{y}}</div>
+    </div>
+    <!--  attribute binding  -->
+    <div>
+      <a :href="url">Yep, another google link</a>
     </div>
     <!--   Outprinitng lists   -->
     <div v-if="showBooks">
@@ -40,6 +44,7 @@ defineProps({
 export default {
   data(){
     return {
+      "url": "https://google.com",
       "title": "hey",
       "age": 100,
       "x": 0,
