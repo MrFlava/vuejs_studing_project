@@ -32,7 +32,7 @@ defineProps({
     <!--   Outprinitng lists   -->
     <div v-if="showBooks">
       <ul>
-        <li v-for="book in books" v-bind:class="{ fav: book.isFav }" @click="toggleFav(book)">
+        <li v-for="book in filteredBooks" v-bind:class="{ fav: book.isFav }" @click="toggleFav(book)">
           <h3>{{book.title}}</h3>
           <p>{{book.author}}</p>
         </li>
@@ -77,6 +77,11 @@ export default {
     },
     toggleFav(book){
       book.isFav = !book.isFav
+    }
+  },
+  computed:{
+    filteredBooks(){
+      return this.books.filter(book => book.isFav)
     }
   }
 }
