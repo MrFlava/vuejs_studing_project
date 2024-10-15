@@ -32,7 +32,7 @@ defineProps({
     <!--   Outprinitng lists   -->
     <div v-if="showBooks">
       <ul>
-        <li v-for="book in books">
+        <li v-for="book in books" v-bind:class="{ fav: book.isFav }">
           <h3>{{book.title}}</h3>
           <p>{{book.author}}</p>
         </li>
@@ -51,9 +51,9 @@ export default {
       "y": 0,
       "showBooks": true,
       "books": [
-        {"title": "name", "author": "ocolesdf"},
-        {"title": "asd", "author": "ocolesdf"},
-        {"title": "dsgfewrg", "author": "rewfef"},
+        {"title": "name", "author": "ocolesdf", "isFav": false},
+        {"title": "asd", "author": "ocolesdf", "isFav": true},
+        {"title": "dsgfewrg", "author": "rewfef", "isFav": false},
       ]
     }
   },
@@ -76,12 +76,27 @@ export default {
 </script>
 
 <style scoped>
-  .box {
-    padding: 100px 0;
-    width: 400px;
-    text-align: center;
-    background: #ddd;
-    margin: 20px;
-    display: inline-block;
+  body {
+    background: #eee;
+    max-width: 960px;
+    margin: 20px auto;
+  }
+  p, h3, ul{
+     margin: 0;
+     padding: 0;
+  }
+  li{
+    list-style: none;
+    background: #fff;
+    margin: 20px auto;
+    padding: 10px 20px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  li.fav {
+    background: #ff9ed2;
+    color: #fff;
   }
 </style>
