@@ -32,7 +32,7 @@ defineProps({
     <!--   Outprinitng lists   -->
     <div v-if="showBooks">
       <ul>
-        <li v-for="book in books" v-bind:class="{ fav: book.isFav }">
+        <li v-for="book in books" v-bind:class="{ fav: book.isFav }" @click="toggleFav(book)">
           <h3>{{book.title}}</h3>
           <p>{{book.author}}</p>
         </li>
@@ -70,6 +70,13 @@ export default {
     handleMouseMove(event){
         this.x = event.offsetX
         this.y = event.offsetY
+    },
+    toggleShowBooks(){
+      this.ShowBooks = !this.showBooks
+
+    },
+    toggleFav(book){
+      book.isFav = !book.isFav
     }
   }
 }
