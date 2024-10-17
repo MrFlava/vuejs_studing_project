@@ -1,11 +1,13 @@
 <script setup>
 import HelloWorld from './components/HelloWorld.vue'
+import Modal from "@/components/Modal.vue";
 </script>
 
 <template>
   <header>
     <div class="wrapper">
       <HelloWorld msg="You did it!" />
+      <Modal></Modal>
     </div>
   </header>
 
