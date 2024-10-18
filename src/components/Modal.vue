@@ -1,10 +1,21 @@
 <script setup>
+defineProps({
+  header: {
+    type: String,
+    required: true
+  },
+  text: {
+    type: String,
+    required: true
+  }
+})
 </script>
 
 <template>
   <div class="backdrop">
     <div class="modal">
-      <p>modal content</p>
+      <h1>{{header}}</h1>
+      <p>{{text}}</p>
     </div>
   </div>
 </template>
@@ -23,5 +34,11 @@
   background: rgba(0, 0, 0, 0.5);
   width: 100%;
   height: 100%;
+}
+h1{
+  color: cornflowerblue;
+}
+.modal p{
+  font-style: normal;
 }
 </style>

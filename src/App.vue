@@ -7,7 +7,7 @@ import Modal from "@/components/Modal.vue";
   <header>
     <div class="wrapper">
       <HelloWorld msg="You did it!" />
-      <Modal></Modal>
+      <Modal header="Sign up for the Giveavay" text="Grab the suit for the halfprice"></Modal>
     </div>
   </header>
 
