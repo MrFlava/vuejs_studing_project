@@ -7,13 +7,17 @@ defineProps({
   text: {
     type: String,
     required: true
+  },
+  theme: {
+    type: String,
+    required: false
   }
 })
 </script>
 
 <template>
   <div class="backdrop">
-    <div class="modal">
+    <div class="modal" :class="{ sale: theme === 'sale'}">
       <h1>{{header}}</h1>
       <p>{{text}}</p>
     </div>
@@ -40,5 +44,14 @@ h1{
 }
 .modal p{
   font-style: normal;
+}
+
+.modal.sale {
+  background: crimson;
+  color: #fff;
+}
+
+.modal.sale h1{
+  color: #fff;
 }
 </style>

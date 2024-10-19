@@ -7,13 +7,24 @@ import Modal from "@/components/Modal.vue";
   <header>
     <div class="wrapper">
       <HelloWorld msg="You did it!" />
-      <Modal header="Sign up for the Giveavay" text="Grab the suit for the halfprice"></Modal>
+      <Modal :header="header" :text="text" theme="sale"></Modal>
     </div>
   </header>
 
   <main>
   </main>
 </template>
+
+<script>
+export default {
+  data(){
+    return {
+      header: "Sign up for the Giveavay",
+      text: "Grab the suit for the halfprice"
+    }
+  }
+}
+</script>
 
 <style scoped>
 </style>
