@@ -8,7 +8,7 @@ import Modal from "@/components/Modal.vue";
     <div class="wrapper">
       <HelloWorld msg="You did it!" />
       <p>Welcome...</p>
-      <div v-if="showModal">
+      <teleport to=".modals" v-if="showModal">
         <Modal theme="sale" @close="toggleModal">
           <template v-slot:links>
             <a href="https://google.com">Sign up now</a>
@@ -18,7 +18,7 @@ import Modal from "@/components/Modal.vue";
           <h1>Sign up for the Giveavay</h1>
           <p>Grab the suit for the halfprice</p>
         </Modal>
-      </div>
+      </teleport>
     </div>
     <button @click.shift="toggleModal">Open modal (shift)</button>
   </header>
