@@ -9,7 +9,15 @@ import Modal from "@/components/Modal.vue";
       <HelloWorld msg="You did it!" />
       <p>Welcome...</p>
       <div v-if="showModal">
-        <Modal :header="header" :text="text" theme="sale" @close="toggleModal"></Modal>
+        <Modal theme="sale" @close="toggleModal">
+          <template v-slot:links>
+            <a href="https://google.com">Sign up now</a>
+            <br>
+            <a href="https://google.com">More info</a>
+          </template>
+          <h1>Sign up for the Giveavay</h1>
+          <p>Grab the suit for the halfprice</p>
+        </Modal>
       </div>
     </div>
     <button @click.shift="toggleModal">Open modal (shift)</button>
@@ -23,8 +31,6 @@ import Modal from "@/components/Modal.vue";
 export default {
   data(){
     return {
-      header: "Sign up for the Giveavay",
-      text: "Grab the suit for the halfprice",
       showModal: false
     }
   },
