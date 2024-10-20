@@ -12,7 +12,7 @@ import Modal from "@/components/Modal.vue";
         <Modal :header="header" :text="text" theme="sale" @close="toggleModal"></Modal>
       </div>
     </div>
-    <button @click="toggleModal">Open modal</button>
+    <button @click.shift="toggleModal">Open modal (shift)</button>
   </header>
 
   <main>
