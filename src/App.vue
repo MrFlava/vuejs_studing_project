@@ -1,9 +1,11 @@
 <script setup>
+import Block from "@/components/Block.vue";
 </script>
 
 <template>
   <h1>Ninja Reaction Timer</h1>
   <button @click="start">Play</button>
+  <Block :delay="this.delay"></Block>
 </template>
 
 <script>
