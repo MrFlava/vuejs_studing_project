@@ -4,8 +4,8 @@ import Block from "@/components/Block.vue";
 
 <template>
   <h1>Ninja Reaction Timer</h1>
-  <button @click="start">Play</button>
-  <Block :delay="this.delay"></Block>
+  <button @click="start" :disabled="isPlaying">Play</button>
+  <Block v-if="isPlaying" :delay="delay"></Block>
 </template>
 
 <script>
