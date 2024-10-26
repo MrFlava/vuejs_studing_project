@@ -7,7 +7,8 @@ import Results from "@/components/Results.vue";
   <h1>Ninja Reaction Timer</h1>
   <button @click="start" :disabled="isPlaying">Play</button>
   <Block v-if="isPlaying" :delay="delay" @end="endGame"></Block>
-  <p v-if="showResults">Reaction time: {{ score }} ms</p>
+  <Results v-if="showResults" :score="score"></Results>
+
 <!--  <Results></Results>-->
 </template>
 
