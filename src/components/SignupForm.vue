@@ -31,6 +31,7 @@
     </div>
 
   </form>
+  <div v-if="passwordError"></div>
   <p>Email: {{ email }}</p>
   <p>Password: {{ password }}</p>
   <p>Role: {{ role }}</p>
@@ -46,7 +47,8 @@ export default {
       role: '',
       terms: false,
       tempSkill: '',
-      skills: []
+      skills: [],
+      passwordError: ''
     }
   },
   methods: {
@@ -64,7 +66,8 @@ export default {
       })
     },
     handleSubmit(){
-      console.log('form submitted')
+      this.passwordError = this.password.length < 5 ?
+          '' : 'Password must be at least 6 chars long'
     }
   }
 }
