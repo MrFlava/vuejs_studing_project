@@ -4,7 +4,7 @@ import { RouterLink, RouterView } from 'vue-router'
 
 <template>
   <header>
-    <div class="wrapper">
+    <div class="wrapper" id="nav">
       <nav>
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/about">About</RouterLink>
@@ -37,10 +37,5 @@ export default {
 </script>
 
 <style scoped>
-button {
-  margin: 0 10px;
-  padding: 10px;
-  border: none;
-  border-radius: 4px;
-}
+
 </style>
