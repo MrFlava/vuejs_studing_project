@@ -5,6 +5,8 @@
   <div class="home">
     <p ref="p">My name is {{ name }} and my age is {{ age }}</p>
     <button @click="handleClick">Click me</button>
+    <button @click="age++">add 1 to age</button>
+    <input type="text" v-model="name" />
   </div>
 </template>
 
@@ -18,16 +20,24 @@ export default {
 
     const p = ref(null)
 
-    let name = 'mairo'
-    let age = 30
+    const name =ref('mairo')
+    const age = ref(30)
 
     const handleClick = () => {
-      p.value.classList.add('test')
-      console.log(p, p.value)
-      p.value.textContent = 'helloooooooooooaaa'
+      name.value = 'luigi'
+      age.value = 45
+      // p.value.classList.add('test')
+      // console.log(p, p.value)
+      // p.value.textContent = 'helloooooooooooaaa'
     }
 
     return{name, age, handleClick, p}
+  },
+
+  data() {
+    return {
+      score: 5
+    }
   }
 }
 </script>
