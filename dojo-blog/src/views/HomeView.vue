@@ -9,6 +9,7 @@
     <div v-for="name in matchingNames" :key="name">
       <p>{{ name }}</p>
     </div>
+    <button @click="handleClick">stop watching</button>
 <!--    <h2>Refs</h2>-->
 <!--    <p>{{ ninjaOne.name }} - {{ ninjaOne.age }}</p>-->
 <!--    <button @click="updateNinjaOne">Update ninja one</button>-->
@@ -23,7 +24,7 @@
 </template>
 
 <script>
-import {ref, computed} from 'vue'
+import {ref, computed, watch, watchEffect} from 'vue'
 
 export default {
   name: "Home",
@@ -31,9 +32,23 @@ export default {
     const search = ref('')
     const names = ref(['mairo', 'kukuku', 'junka', 'sofia'])
 
+    const stopWatch = watch(search, () => {
+      console.log('watch function ran')
+    })
+
+    const stopWatchEffect = watchEffect(() => {
+      console.log('watch effect function ran', search.value)
+    })
+
+    const handleClick = () => {
+      stopWatch()
+      stopWatchEffect()
+    }
+
     const matchingNames = computed(() => {
       return names.value.filter((name) => name.includes(search.value))
     })
+
     // const ninjaOne = ref({name: 'mario', age: 12})
     // const ninjaTwo = reactive({name: 'maka', age: 24})
     //
@@ -58,7 +73,7 @@ export default {
       // p.value.textContent = 'helloooooooooooaaa'
     // return {ninjaOne, updateNinjaOne, ninjaTwo, updateNinjaTwo, nameTwo}
     // return{name, age, handleClick, p}
-    return { names, search, matchingNames }
+    return { names, search, matchingNames, handleClick}
   }
 }
 </script>
