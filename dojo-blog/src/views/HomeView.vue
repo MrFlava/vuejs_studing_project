@@ -4,12 +4,18 @@
 <template>
   <div class="home">
     <h1>Home</h1>
-    <h2>Refs</h2>
-    <p>{{ ninjaOne.name }} - {{ ninjaOne.age }}</p>
-    <button @click="updateNinjaOne">Update ninja one</button>
-    <h2>Reactive</h2>
-    <p>{{ ninjaTwo.name }} - {{ ninjaTwo.age }}</p>
-    <button @click="updateNinjaTwo">Update ninja two</button>
+    <input type="text" v-model="search">
+    <p>search term - {{ search }}</p>
+    <div v-for="name in matchingNames" :key="name">
+      <p>{{ name }}</p>
+    </div>
+    <button @click="handleClick">stop watching</button>
+<!--    <h2>Refs</h2>-->
+<!--    <p>{{ ninjaOne.name }} - {{ ninjaOne.age }}</p>-->
+<!--    <button @click="updateNinjaOne">Update ninja one</button>-->
+<!--    <h2>Reactive</h2>-->
+<!--    <p>{{ ninjaTwo.name }} - {{ ninjaTwo.age }}</p>-->
+<!--    <button @click="updateNinjaTwo">Update ninja two</button>-->
     <!--    <p ref="p">My name is {{ name }} and my age is {{ age }}</p>-->
 <!--    <button @click="handleClick">Click me</button>-->
 <!--    <button @click="age++">add 1 to age</button>-->
@@ -18,20 +24,40 @@
 </template>
 
 <script>
-import { ref, reactive } from 'vue'
+import {ref, computed, watch, watchEffect} from 'vue'
 
 export default {
-  // name: "Home",
+  name: "Home",
   setup() {
-    const ninjaOne = ref({name: 'mario', age: 12})
-    const ninjaTwo = reactive({name: 'maka', age: 24})
+    const search = ref('')
+    const names = ref(['mairo', 'kukuku', 'junka', 'sofia'])
 
-    const updateNinjaOne = () => {
-      ninjaOne.value.age = 40
+    const stopWatch = watch(search, () => {
+      console.log('watch function ran')
+    })
+
+    const stopWatchEffect = watchEffect(() => {
+      console.log('watch effect function ran', search.value)
+    })
+
+    const handleClick = () => {
+      stopWatch()
+      stopWatchEffect()
     }
-    const updateNinjaTwo = () => {
-      ninjaTwo.age = 50
-    }
+
+    const matchingNames = computed(() => {
+      return names.value.filter((name) => name.includes(search.value))
+    })
+
+    // const ninjaOne = ref({name: 'mario', age: 12})
+    // const ninjaTwo = reactive({name: 'maka', age: 24})
+    //
+    // const updateNinjaOne = () => {
+    //   ninjaOne.value.age = 40
+    // }
+    // const updateNinjaTwo = () => {
+    //   ninjaTwo.age = 50
+    // }
     // console.log(this)
     //
     // const p = ref(null)
@@ -45,8 +71,9 @@ export default {
       // p.value.classList.add('test')
       // console.log(p, p.value)
       // p.value.textContent = 'helloooooooooooaaa'
-    return {ninjaOne, updateNinjaOne, ninjaTwo, updateNinjaTwo, nameTwo}
+    // return {ninjaOne, updateNinjaOne, ninjaTwo, updateNinjaTwo, nameTwo}
     // return{name, age, handleClick, p}
+    return { names, search, matchingNames, handleClick}
   }
 }
 </script>
