@@ -1,79 +1,24 @@
-<script setup>
-</script>
-
 <template>
   <div class="home">
     <h1>Home</h1>
-    <input type="text" v-model="search">
-    <p>search term - {{ search }}</p>
-    <div v-for="name in matchingNames" :key="name">
-      <p>{{ name }}</p>
-    </div>
-    <button @click="handleClick">stop watching</button>
-<!--    <h2>Refs</h2>-->
-<!--    <p>{{ ninjaOne.name }} - {{ ninjaOne.age }}</p>-->
-<!--    <button @click="updateNinjaOne">Update ninja one</button>-->
-<!--    <h2>Reactive</h2>-->
-<!--    <p>{{ ninjaTwo.name }} - {{ ninjaTwo.age }}</p>-->
-<!--    <button @click="updateNinjaTwo">Update ninja two</button>-->
-    <!--    <p ref="p">My name is {{ name }} and my age is {{ age }}</p>-->
-<!--    <button @click="handleClick">Click me</button>-->
-<!--    <button @click="age++">add 1 to age</button>-->
-<!--    <input type="text" v-model="name" />-->
+    <PostListView :posts="posts"></PostListView>
   </div>
 </template>
 
 <script>
-import {ref, computed, watch, watchEffect} from 'vue'
+import PostListView from "@/components/PostListView.vue";
+import {ref} from 'vue'
 
 export default {
   name: "Home",
+  components: { PostListView },
   setup() {
-    const search = ref('')
-    const names = ref(['mairo', 'kukuku', 'junka', 'sofia'])
+    const posts = ref([
+      {title: 'welcome to the blog', body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", id: 1},
+      {title: 'tope 5 css tips', body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', id: 2},
+    ])
 
-    const stopWatch = watch(search, () => {
-      console.log('watch function ran')
-    })
-
-    const stopWatchEffect = watchEffect(() => {
-      console.log('watch effect function ran', search.value)
-    })
-
-    const handleClick = () => {
-      stopWatch()
-      stopWatchEffect()
-    }
-
-    const matchingNames = computed(() => {
-      return names.value.filter((name) => name.includes(search.value))
-    })
-
-    // const ninjaOne = ref({name: 'mario', age: 12})
-    // const ninjaTwo = reactive({name: 'maka', age: 24})
-    //
-    // const updateNinjaOne = () => {
-    //   ninjaOne.value.age = 40
-    // }
-    // const updateNinjaTwo = () => {
-    //   ninjaTwo.age = 50
-    // }
-    // console.log(this)
-    //
-    // const p = ref(null)
-    //
-    // const name =ref('mairo')
-    // const age = ref(30)
-    //
-    // const handleClick = () => {
-    //   name.value = 'luigi'
-    //   age.value = 45
-      // p.value.classList.add('test')
-      // console.log(p, p.value)
-      // p.value.textContent = 'helloooooooooooaaa'
-    // return {ninjaOne, updateNinjaOne, ninjaTwo, updateNinjaTwo, nameTwo}
-    // return{name, age, handleClick, p}
-    return { names, search, matchingNames, handleClick}
+    return {posts}
   }
 }
 </script>
