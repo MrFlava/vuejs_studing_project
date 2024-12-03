@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import {computed} from "vue";
+import {computed, onMounted, onUnmounted, onUpdated} from "vue";
 
 export default {
   props: ['post'],
@@ -14,6 +14,10 @@ export default {
     const snippet = computed(() => {
       return props.post.body.substring(0, 100) + '...'
     })
+
+    onMounted(() => console.log('component mounted'))
+    onUnmounted(() => console.log('component unmounted'))
+    onUpdated(() => console.log('component updated'))
 
     return {snippet}
   }
