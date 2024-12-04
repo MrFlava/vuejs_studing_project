@@ -1,0 +1,31 @@
+{
+  "posts": [
+    {
+      "id":  1,
+      "title":  "Welcome",
+      "body":  "lorem",
+      "tags": [
+        "webdev",
+        "cooling",
+        "news"
+      ]
+    },
+
+    {"id":  2,
+      "title":  "Top 5 cool stuff",
+      "body":  "lorem2",
+      "tags": [
+        "webdev",
+        "coding"
+      ]
+    },
+    {
+      "id":  3,
+      "title":  "My name is SPq23rae",
+      "body":  "lorem3",
+      "tags": [
+        "naming"
+      ]
+    }
+  ]
+}
