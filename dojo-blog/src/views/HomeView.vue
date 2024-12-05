@@ -1,7 +1,13 @@
 <template>
   <div class="home">
     <h1>Home</h1>
-    <PostListView :posts="posts" v-if="showPosts"></PostListView>
+    <div v-if="error">{{ error }}</div>
+    <div v-if="posts.length">
+      <PostListView :posts="posts" v-if="showPosts"></PostListView>
+    </div>
+    <div v-else>
+      <p>loading...</p>
+    </div>
     <button @click="showPosts = !showPosts">toggle posts</button>
     <button @click="posts.pop()">delete a post</button>
   </div>
@@ -34,7 +40,7 @@ export default {
     }
     load()
 
-    return {posts, showPosts};
+    return {posts, error, showPosts};
   }
 }
 
