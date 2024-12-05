@@ -15,13 +15,28 @@ export default {
   name: "Home",
   components: { PostListView },
   setup() {
-    const posts = ref([
-      {title: 'welcome to the blog', body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", id: 1},
-      {title: 'tope 5 css tips', body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', id: 2},
-    ])
+    const posts = ref([])
     const showPosts = ref(true)
+    const error = ref(null)
+
+    const load = async () => {
+      try {
+        let data = await fetch('http://localhost:3000/posts');
+        if (!data.ok) {
+          throw Error('Failed to fetch posts.');
+        }
+        posts.value = await data.json()
+      }
+      catch (err) {
+        error.value = err.message;
+        console.log(err.message);
+      }
+    }
+    load()
 
     return {posts, showPosts};
   }
 }
+
+
 </script>
