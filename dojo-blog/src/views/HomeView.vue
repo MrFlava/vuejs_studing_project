@@ -14,30 +14,19 @@
 </template>
 
 <script>
-import PostListView from "@/components/PostListView.vue";
 import {ref} from 'vue'
+import getPosts from "@/composables/getPosts.js";
+import PostListView from "@/components/PostListView.vue";
+
 
 export default {
   name: "Home",
   components: { PostListView },
   setup() {
-    const posts = ref([])
-    const showPosts = ref(true)
-    const error = ref(null)
+    const {posts, error, load} = getPosts()
 
-    const load = async () => {
-      try {
-        let data = await fetch('http://localhost:3000/posts');
-        if (!data.ok) {
-          throw Error('Failed to fetch posts.');
-        }
-        posts.value = await data.json()
-      }
-      catch (err) {
-        error.value = err.message;
-        console.log(err.message);
-      }
-    }
+    const showPosts = ref(true)
+
     load()
 
     return {posts, error, showPosts};
